@@ -1,0 +1,4 @@
+<!-- ログアウト時のメッセージ表示用 -->
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "flash flash_#{key}") %>
+<% end %>

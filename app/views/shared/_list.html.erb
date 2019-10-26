@@ -1,0 +1,42 @@
+<div class="col-xs-3 left-contents">
+	<div class="">
+		<h2>User info</h2>
+		<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size:'100x100' %>
+		<table class="table">
+			<tr>
+				<td><label>name</label></td>
+				<td><label><%= user.name %></label></td> <!--user@を外した-->
+			</tr>
+			<tr>
+				<td><label>introduction</label></td>
+				<td><label><%= user.introduction %></label></td> <!--user@を外した-->
+			</tr>
+		</table>
+		<div class="row">
+		<!--ここに条件分岐が必要-->
+			<% if user.id == current_user.id %> <!--user@を外した-->
+				<p><%= link_to "", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench " %></p>
+			<% else %>
+				<p><%= link_to "", user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench " %></p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="">
+		<h2>New book</h2>
+		<%= form_for(book) do |f| %> <!--book@を外した-->
+		<div class="row list-box-title">
+			<label>Title</label>
+			<%= f.text_field :title, placeholder:"タイトルを入力", class: "col-xs-12 lbt" %>
+		</div>
+		<div class="row list-box-opinion">
+			<label>Opinion</label>
+			<%= f.text_area :body, placeholder:"感想を入力", class: "col-xs-12 lbo" %>
+		</div>
+		<div class="row">
+			<p><%= f.submit "Create Book", class: "col-xs-12 btn btn-primary" %></p>
+		</div>
+		<% end %>
+	</div>
+</div>
+
